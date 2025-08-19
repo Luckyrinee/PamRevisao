@@ -2,27 +2,46 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import casual_dog from './assets/casual_dog.png';
 import Google from './assets/Google.png';
- 
-export default function App() {
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import AccessScreen from './AccessScreen'; // verifique se o arquivo está no mesmo diretório
+
+function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Image source={casual_dog} />
- 
+
       <Text style={styles.title}>Ótimo dia!</Text>
       <Text style={styles.subtitle}>Como deseja acessar?</Text>
- 
-      <TouchableOpacity style={styles.button}>
+
+      <TouchableOpacity 
+        style={styles.button} onPress={() => navigation.navigate('Access')}>
+      
         <Image source={Google} style={styles.icon}/>
         <Text style={styles.buttonText}>Como deseja acessar?</Text>
       </TouchableOpacity>
- 
+
       <TouchableOpacity style={styles.button2}>
         <Text style={styles.buttonText2}>Outras opções</Text>
       </TouchableOpacity>
- 
- 
+
       <StatusBar style="auto" />
     </View>
+  );
+}
+
+const Stack = createNativeStackNavigator();
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: true }}>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Access" component={AccessScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
  
@@ -40,7 +59,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   subtitle: {
-    fontSize: 18,
+    fontSize: 14,
     marginBottom: 20,
   },
   button: {
