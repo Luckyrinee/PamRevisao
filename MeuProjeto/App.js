@@ -37,9 +37,9 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: true }}>
+      <Stack.Navigator screenOptions={{ headerStyle: { backgroundColor: '#b1b1b141', height: 45}, headerTitle: '', headerLeft: () => null}}>
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Access" component={AccessScreen} />
+        <Stack.Screen name="Access" component={AccessScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -52,6 +52,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
+  },
+  headerShown: {
+    backgroundColor: '#43d38d',
   },
   title: {
     fontSize: 40,
